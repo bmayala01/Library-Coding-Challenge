@@ -1,9 +1,13 @@
+/*
+ * Tracks a books specific detail.
+ * Keeps tracks of a books inventory through its total copies and its available copies.
+ */
 public class Book {
     private String title;
     private  String author;
     private  String isbn;
-    private int totalCopies;
-    private int availableCopies;
+    private int totalCopies;        // total copies of the book in the library.
+    private int availableCopies;    // available copies after checking out or returning the book
 
 
     // Constructor (Initializes the object)
@@ -33,6 +37,7 @@ public class Book {
         return this.totalCopies;
     }
 
+    // there must be at least 1 copy of a book to have any available
     public int getAvailableCopies() {
         if (totalCopies > 0) {
             return this.availableCopies;
@@ -43,6 +48,7 @@ public class Book {
     }
 
 
+    // Overrides the default object toString() for my personal one
     @Override
     public String toString() {
         return "\nBook Info\n" +
@@ -54,16 +60,25 @@ public class Book {
     }
     
 
+    // True if there are avaiable copies
     public boolean isAvailable() {
         return availableCopies > 0;
     }
 
+    /*
+     * checks if a book is available
+     * decrements available copies upon checking out
+     */
     public void checkOut() {
         if (isAvailable()) {
             availableCopies--;
         }
     }
 
+    /*
+     * available copies can equal total copies but not exceed it
+     * Only increment if its 1 or more less than total copies
+     */
     public void returnBook() {
         if (availableCopies < totalCopies) {
             availableCopies++;
