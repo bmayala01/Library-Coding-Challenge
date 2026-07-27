@@ -17,6 +17,9 @@ public class Member {
     public boolean checkOut(Book book) {
         if (book.isAvailable() && checkedOutBooks.size() < 3) {
             checkedOutBooks.add(book);
+
+            book.checkOut();
+
             System.out.println(book + " added to collection");
             return true;
         }
@@ -27,6 +30,9 @@ public class Member {
     public boolean returnBook(Book book) {
         if (checkedOutBooks.contains(book)) {
             checkedOutBooks.remove(book);
+
+            book.returnBook();
+
             return true;
         }
 

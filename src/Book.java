@@ -12,7 +12,7 @@ public class Book {
         this.author = author;
         this.isbn = isbn;
         this.totalCopies = totalCopies;
-        this.availableCopies = availableCopies;
+        this.availableCopies = totalCopies;
     }
 
     // Getter allows reading the title, but not changing it
@@ -60,6 +60,12 @@ public class Book {
     public void checkOut() {
         if (isAvailable()) {
             availableCopies--;
+        }
+    }
+
+    public void returnBook() {
+        if (availableCopies < totalCopies) {
+            availableCopies++;
         }
     }
 
