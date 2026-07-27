@@ -13,6 +13,14 @@ public class Member {
         this.checkedOutBooks = new ArrayList<>();
     }
 
+    public String getName() {
+        return this.name;
+    }
+
+    public String getMemberID() {
+        return this.memberID;
+    }
+
 
     public boolean checkOut(Book book) {
         if (book.isAvailable() && checkedOutBooks.size() < 3) {
@@ -20,7 +28,7 @@ public class Member {
 
             book.checkOut();
 
-            System.out.println(book + " added to collection");
+            System.out.println(book);
             return true;
         }
 
