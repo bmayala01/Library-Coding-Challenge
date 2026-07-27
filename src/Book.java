@@ -2,15 +2,17 @@ public class Book {
     private String title;
     private  String author;
     private  String isbn;
-    private int copiesOwned;
+    private int totalCopies;
+    private int availableCopies;
 
 
     // Constructor (Initializes the object)
-    public Book(String title, String author, String isbn, int copiesOwned) {
+    public Book(String title, String author, String isbn, int totalCopies) {
         this.title = title;
         this.author = author;
         this.isbn = isbn;
-        this.copiesOwned = copiesOwned;
+        this.totalCopies = totalCopies;
+        this.availableCopies = availableCopies;
     }
 
     // Getter allows reading the title, but not changing it
@@ -27,8 +29,17 @@ public class Book {
         return this.isbn;
     }
 
-    public int getCopiesOwned() {
-        return this.copiesOwned;
+    public int getTotalCopies() {
+        return this.totalCopies;
+    }
+
+    public int getAvailableCopies() {
+        if (totalCopies > 0) {
+            return this.availableCopies;
+        }
+        else {
+            return 0;
+        }
     }
 
 
@@ -38,16 +49,18 @@ public class Book {
                "Title: " + title + "\n" +
                "Author: " + author + "\n" +
                "ISBN: " + isbn + "\n" +
-               "There are " + copiesOwned + " left.";
+               "There are " + availableCopies + " left.";
     }
     
 
     public boolean isAvailable() {
-        if (copiesOwned > 0) {
-            return true;
-        }
+        return availableCopies > 0;
+    }
 
-        return false;
+    public void checkOut() {
+        if (isAvailable()) {
+            availableCopies--;
+        }
     }
 
  
